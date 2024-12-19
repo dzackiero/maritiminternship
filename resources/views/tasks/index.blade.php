@@ -81,7 +81,7 @@
 <div class="header d-flex justify-content-between align-items-center px-4">
     <h3>Maritim Internship</h3>
     <div>
-        <span>{{ ucfirst(session()->get("username")) }} </span>
+        <span>{{ ucfirst(session()->get("divisi")) }} </span>
         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
@@ -134,12 +134,10 @@
                                     Developer and Administrator</a></li>
                             <li><a class="dropdown-item {{ request('divisi') == '3' ? 'active' : '' }}"
                                    href="{{ route('tasks.index', ['status' => $status, 'divisi' => '3']) }}">Blue
-                                    Economy
-                                    Kitchen Officer</a></li>
+                                    Economy Kitchen Officer</a></li>
                             <li><a class="dropdown-item {{ request('divisi') == '4' ? 'active' : '' }}"
                                    href="{{ route('tasks.index', ['status' => $status, 'divisi' => '4']) }}">Blue
-                                    Economy
-                                    Science Officer</a></li>
+                                    Economy Science Officer</a></li>
                             <li><a class="dropdown-item {{ request('divisi') == '5' ? 'active' : '' }}"
                                    href="{{ route('tasks.index', ['status' => $status, 'divisi' => '5']) }}">Administrator
                                     Finance Officer</a></li>
@@ -154,7 +152,7 @@
                 <div class="col-md-4">
                     <div class="card card-task shadow-sm">
                         <div class="card-header bg-primary text-white">
-                            <h5>{{ $task->judul }}</h5>
+                            <h5>{{ $task->judul }} ({{ $divisions[$task->divisi_id]}})</h5>
                         </div>
                         <div class="card-body">
                             <p>{{ $task->deskripsi }}</p>

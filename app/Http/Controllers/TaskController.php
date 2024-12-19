@@ -31,6 +31,13 @@ class TaskController extends Controller
             $query->where('divisi_id', session('user_id'));
         }
 
+        $divisions = [
+            2 => "WDA",
+            3 => "BEKO",
+            4 => "BESO",
+            5 => "AFO",
+        ];
+
         // Ambil hasil query
         $tasks = $query->get();
 
@@ -38,7 +45,8 @@ class TaskController extends Controller
         return view('tasks.index', [
             'tasks' => $tasks,
             'status' => $status, // Passing status ke view
-            'divisi' => $divisi  // Passing divisi ke view
+            'divisi' => $divisi,  // Passing divisi ke view,
+            "divisions" => $divisions
         ]);
 
         // //
@@ -52,9 +60,7 @@ class TaskController extends Controller
     public function create()
     {
 
-        $users = User::all();
-
-
+        $users = User::where("id", "!=", 1)->get();
         return view('tasks.create', compact('users'));
     }
 
